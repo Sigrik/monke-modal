@@ -1,0 +1,54 @@
+html {
+  background: #eeeeee;
+}
+
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 800px;
+}
+
+button {
+  font-size: 18px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #000000;
+  background: #ffffff;
+}
+
+button:hover {
+  background: #d8d8d8;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 400px;
+  height: 300px;
+  background: #ffffff;
+  padding: 24px;
+  z-index: 2;
+  border-radius: 12px;
+  border: 1px solid #000000;
+}
+
+.modalExit {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  top: 12px;
+  right: 12px;
+  color: black;
+  font-size: 32px;
+  font-weight: bold;
+  border-radius: 360px;
+  border: 1px solid black;
+  cursor: pointer;
+}
