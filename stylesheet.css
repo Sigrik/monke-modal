@@ -2,6 +2,10 @@ html {
   background: #eeeeee;
 }
 
+body {
+  height: 2000px;
+}
+
 #container {
   display: flex;
   flex-direction: column;
@@ -21,6 +25,14 @@ button {
 
 button:hover {
   background: #d8d8d8;
+}
+
+.modal-wrapper {
+  border: 1000px solid rgba(0, 0, 0, 0.25);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal {

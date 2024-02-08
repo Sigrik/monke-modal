@@ -1,10 +1,12 @@
 function showModal(title, description) {
+  const modalWrapper = document.createElement("div");
   const modal = document.createElement("div");
   const modalTitle = document.createElement("h2");
   const modalDescription = document.createElement("p");
   const modalExit = document.createElement("div");
   const modalButton = document.createElement("button");
   modal.classList.add("modal");
+  modalWrapper.classList.add("modal-wrapper");
   modalTitle.innerHTML = title;
   modalDescription.innerHTML = description;
   modalButton.innerHTML = "Accept";
@@ -14,9 +16,20 @@ function showModal(title, description) {
   modal.appendChild(modalDescription);
   modal.appendChild(modalButton);
   modal.appendChild(modalExit);
-  document.getElementById("container").appendChild(modal);
+  modalWrapper.appendChild(modal);
+  document.getElementById("container").appendChild(modalWrapper);
   modalExit.addEventListener("click", (e) => {
-    modal.remove();
+    modalWrapper.remove();
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      modalWrapper.remove();
+    }
+  });
+  window.addEventListener("click", (e) => {
+    if (e.target === modalWrapper) {
+      modalWrapper.remove();
+    }
   });
 }
 
