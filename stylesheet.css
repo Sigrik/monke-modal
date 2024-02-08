@@ -28,11 +28,14 @@ button:hover {
 }
 
 .modal-wrapper {
-  border: 1000px solid rgba(0, 0, 0, 0.25);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.25);
   position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
+  top: 0;
 }
 
 .modal {
