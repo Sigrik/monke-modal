@@ -1,1 +1,3 @@
-# js-component-modal
+# Monke Modal
+
+## A simple modal plugin
