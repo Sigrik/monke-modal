@@ -3,7 +3,29 @@
     showModal,
   };
 
-  function showModal(input) {
+  function showModal(modalParams) {
+    const defaultModalParams = {
+      title: "Modal title",
+      body: "Default modal text",
+      variant: 1,
+      submitText: "Accept",
+      cancelText: "Decline",
+      onClose: () => {},
+      onSubmit: () => {},
+      isOpen: false,
+    };
+
+    const resolvedModalParams = {
+      ...defaultModalParams,
+      ...modalParams,
+    };
+
+    _renderModal(resolvedModalParams);
+  }
+
+  window.monkeModal = publicApi;
+
+  function _renderModal(input) {
     const modalWrapper = document.createElement("div");
     const modal = document.createElement("div");
     const modalTitle = document.createElement("h2");
@@ -24,6 +46,7 @@
     modal.appendChild(modalExit);
     modalWrapper.appendChild(modal);
     document.getElementById("container").appendChild(modalWrapper);
+    input.isOpen = true;
 
     const acceptListener = function accept(e) {
       modalWrapper.remove();
@@ -32,6 +55,7 @@
       modalExit.removeEventListener("click", exitListener);
       window.removeEventListener("keydown", escapeListener);
       window.removeEventListener("click", targetExitListener);
+      input.isOpen = false;
     };
 
     const exitListener = function exit(e) {
@@ -41,6 +65,7 @@
       modalExit.removeEventListener("click", exitListener);
       window.removeEventListener("keydown", escapeListener);
       window.removeEventListener("click", targetExitListener);
+      input.isOpen = false;
     };
 
     const escapeListener = function escape(e) {
@@ -51,6 +76,7 @@
         modalExit.removeEventListener("click", exitListener);
         window.removeEventListener("keydown", escapeListener);
         window.removeEventListener("click", targetExitListener);
+        input.isOpen = false;
       }
     };
 
@@ -62,6 +88,7 @@
         modalExit.removeEventListener("click", exitListener);
         window.removeEventListener("keydown", escapeListener);
         window.removeEventListener("click", targetExitListener);
+        input.isOpen = false;
       }
     };
 
@@ -69,12 +96,5 @@
     modalExit.addEventListener("click", exitListener);
     window.addEventListener("keydown", escapeListener);
     window.addEventListener("click", targetExitListener);
-  }
-
-  window.monkeModal = publicApi;
-
-  // private functions
-  function _testfunction() {
-    console.log("test");
   }
 })();
