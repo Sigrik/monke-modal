@@ -32,6 +32,7 @@
     const modalDescription = document.createElement("p");
     const modalExit = document.createElement("div");
     const modalButton = document.createElement("button");
+    const scrollLock = document.getElementsByTagName("BODY")[0];
     modalWrapper.classList.add("modal-wrapper");
     modal.classList.add("modal");
     modalTitle.innerHTML = input.title;
@@ -47,6 +48,7 @@
     modalWrapper.appendChild(modal);
     document.getElementById("container").appendChild(modalWrapper);
     input.isOpen = true;
+    scrollLock.style.overflow = "hidden";
 
     const acceptListener = function accept(e) {
       modalWrapper.remove();
@@ -56,6 +58,7 @@
       window.removeEventListener("keydown", escapeListener);
       window.removeEventListener("click", targetExitListener);
       input.isOpen = false;
+      scrollLock.style.overflow = "visible";
     };
 
     const exitListener = function exit(e) {
@@ -66,6 +69,7 @@
       window.removeEventListener("keydown", escapeListener);
       window.removeEventListener("click", targetExitListener);
       input.isOpen = false;
+      scrollLock.style.overflow = "visible";
     };
 
     const escapeListener = function escape(e) {
@@ -77,6 +81,7 @@
         window.removeEventListener("keydown", escapeListener);
         window.removeEventListener("click", targetExitListener);
         input.isOpen = false;
+        scrollLock.style.overflow = "visible";
       }
     };
 
@@ -89,6 +94,7 @@
         window.removeEventListener("keydown", escapeListener);
         window.removeEventListener("click", targetExitListener);
         input.isOpen = false;
+        scrollLock.style.overflow = "visible";
       }
     };
 
