@@ -7,9 +7,11 @@
     const defaultModalParams = {
       title: "Modal title",
       body: "Default modal text",
-      variant: 1,
+      image: "",
+      template: 1,
       submitText: "Accept",
       cancelText: "Decline",
+      closeVisible: 1,
       onClose: () => {},
       onSubmit: () => {},
       isOpen: false,
@@ -28,6 +30,7 @@
   function _renderModal(input) {
     const modalWrapper = document.createElement("div");
     const modal = document.createElement("div");
+    const modalImage = document.createElement("div");
     const modalTitle = document.createElement("h2");
     const modalDescription = document.createElement("p");
     const modalExit = document.createElement("div");
@@ -38,18 +41,37 @@
     modalTitle.innerHTML = input.title;
     modalDescription.innerHTML = input.body;
     modalButton.classList.add("modal-button");
-    modalButton.innerHTML = "Accept";
+    modalButton.innerHTML = input.submitText;
     modalExit.classList.add("modal-exit");
     modalExit.innerHTML = `&times;`;
-    modal.appendChild(modalTitle);
-    modal.appendChild(modalDescription);
-    modal.appendChild(modalButton);
-    modal.appendChild(modalExit);
-    modalWrapper.appendChild(modal);
-    document.getElementById("container").appendChild(modalWrapper);
-    input.isOpen = true;
     scrollLock.style.overflow = "hidden";
+    input.isOpen = true;
 
+    //cut
+    switch (input.template) {
+      case 1:
+        modal.appendChild(modalTitle);
+        modal.appendChild(modalDescription);
+        modal.appendChild(modalButton);
+        modal.appendChild(modalExit);
+        modalExit.classList.toggle("hidden", (input.closeVisible = 0));
+        modalWrapper.appendChild(modal);
+        document.getElementById("container").appendChild(modalWrapper);
+        console.log("case1");
+        break;
+      case 2:
+        modal.appendChild(modalTitle);
+        //modal.appendChild(modalDescription);
+        modal.appendChild(modalButton);
+        modal.appendChild(modalExit);
+        modalExit.classList.toggle("hidden", (input.closeVisible = 0));
+        modalWrapper.appendChild(modal);
+        document.getElementById("container").appendChild(modalWrapper);
+        console.log("case2");
+        break;
+      default:
+        console.log("default");
+    }
     const acceptListener = function accept(e) {
       modalWrapper.remove();
       input.onSubmit();
