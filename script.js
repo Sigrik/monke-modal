@@ -1,3 +1,5 @@
+import monkeModal from "monkemodal.es.js";
+
 document.getElementById("modalButton-1").addEventListener("click", (e) => {
   monkeModal.showModal({
     template: "Accept",

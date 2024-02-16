@@ -1,0 +1,24 @@
+{
+  "name": "monkemodal",
+  "version": "1.0.0",
+  "description": "Simple modal",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/monkemodal.umd.js",
+  "module": "./dist/monkemodal.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/monkemodal.es.js",
+      "require": "./dist/monkemodal.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.1.0"
+  }
+}
