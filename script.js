@@ -22,4 +22,11 @@ document.getElementById("modalButton-3").addEventListener("click", (e) => {
     title: "Loading",
     content: "This window will close once the loading is finished",
   });
+  closeWindowTimer(5000);
 });
+
+const closeWindowTimer = (time) => {
+  setTimeout(function () {
+    monkeModal.removeModal();
+  }, time);
+};

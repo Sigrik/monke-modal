@@ -1,7 +1,7 @@
 (function () {
   const publicApi = {
     showModal,
-    //removeModal,
+    removeModal,
   };
 
   function showModal(modalParams) {
@@ -25,15 +25,20 @@
     _renderModal(resolvedModalParams);
   }
 
+  function removeModal() {
+    console.log("Modal Removed");
+  }
+
   window.monkeModal = publicApi;
 
   function _renderModal(input) {
     const modalWrapper = document.createElement("div");
     const modal = document.createElement("div");
     const modalImage = document.createElement("div");
-    const modalTitle = document.createElement("h2");
+    const modalTitle = document.createElement("h4");
     const modalContent = document.createElement("p");
     const modalExit = document.createElement("div");
+    const buttonWrapper = document.createElement("div");
     const modalAccept = document.createElement("button");
     const modalCancel = document.createElement("button");
     const scrollLock = document.getElementsByTagName("BODY")[0];
@@ -42,10 +47,12 @@
     modalImage.classList.add = "modal-image";
     modalTitle.innerHTML = input.title;
     modalContent.innerHTML = input.content;
+    buttonWrapper.classList.add("modal-button-wrapper");
     modalAccept.classList.add("modal-button", "modal-accept");
     modalAccept.innerHTML = input.submitText;
     modalCancel.classList.add("modal-button", "modal-cancel");
     modalCancel.innerHTML = input.cancelText;
+    buttonWrapper.appendChild(modalAccept);
     modalExit.classList.add("modal-exit");
     modalExit.innerHTML = `&times;`;
     scrollLock.style.overflow = "hidden";
@@ -54,23 +61,21 @@
       case "Accept":
         modal.appendChild(modalTitle);
         modal.appendChild(modalContent);
-        modal.appendChild(modalAccept);
-        modal.appendChild(modalCancel);
+        buttonWrapper.appendChild(modalCancel);
+        modal.appendChild(buttonWrapper);
         modal.appendChild(modalExit);
         modalExit.classList.toggle("hidden", input.closeVisible === 0);
         modalWrapper.appendChild(modal);
         document.getElementById("container").appendChild(modalWrapper);
-        console.log("Confirm");
         break;
       case "Alert":
         modal.appendChild(modalTitle);
         modal.appendChild(modalContent);
-        modal.appendChild(modalAccept);
+        modal.appendChild(buttonWrapper);
         modal.appendChild(modalExit);
         modalExit.classList.toggle("hidden", input.closeVisible === 0);
         modalWrapper.appendChild(modal);
         document.getElementById("container").appendChild(modalWrapper);
-        console.log("Alert");
         break;
       case "Loader":
         modal.appendChild(modalTitle);
@@ -78,18 +83,16 @@
         modalExit.classList.toggle("hidden", input.closeVisible === 0);
         modalWrapper.appendChild(modal);
         document.getElementById("container").appendChild(modalWrapper);
-        console.log("Loader");
         break;
       default:
         modal.appendChild(modalTitle);
         modal.appendChild(modalContent);
-        modal.appendChild(modalAccept);
-        modal.appendChild(modalCancel);
+        buttonWrapper.appendChild(modalCancel);
+        modal.appendChild(buttonWrapper);
         modal.appendChild(modalExit);
         modalExit.classList.toggle("hidden", input.closeVisible === 0);
         modalWrapper.appendChild(modal);
         document.getElementById("container").appendChild(modalWrapper);
-        console.log("Default");
     }
     const acceptListener = function accept(e) {
       modalWrapper.remove();
