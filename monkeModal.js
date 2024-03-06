@@ -26,12 +26,14 @@
   }
 
   function removeModal() {
+    //input.onClose();
+    //input.isOpen = false;
     console.log("Modal Removed");
   }
 
   window.monkeModal = publicApi;
 
-  function _renderModal(input) {
+  function _getModalElements() {
     const modalWrapper = document.createElement("div");
     const modal = document.createElement("div");
     const modalImage = document.createElement("div");
@@ -42,15 +44,44 @@
     const modalAccept = document.createElement("button");
     const modalCancel = document.createElement("button");
     const scrollLock = document.getElementsByTagName("BODY")[0];
+    return {
+      modalWrapper,
+      modal,
+      modalImage,
+      modalTitle,
+      modalContent,
+      modalExit,
+      buttonWrapper,
+      modalAccept,
+      modalCancel,
+      scrollLock,
+    };
+  }
+
+  function _renderModal(input) {
+    const {
+      modalWrapper,
+      modal,
+      modalImage,
+      modalTitle,
+      modalContent,
+      modalExit,
+      buttonWrapper,
+      modalAccept,
+      modalCancel,
+      scrollLock,
+    } = _getModalElements();
     modalWrapper.id = "modal-wrapper";
     modal.classList.add("modal");
     modalImage.classList.add = "modal-image";
     modalTitle.innerHTML = input.title;
     modalContent.innerHTML = input.content;
     buttonWrapper.classList.add("modal-button-wrapper");
-    modalAccept.classList.add("modal-button", "modal-accept");
+    modalAccept.classList.add("modal-button");
+    modalAccept.id = "modal-accept";
     modalAccept.innerHTML = input.submitText;
-    modalCancel.classList.add("modal-button", "modal-cancel");
+    modalCancel.classList.add("modal-button");
+    modalCancel.id = "modal-cancel";
     modalCancel.innerHTML = input.cancelText;
     buttonWrapper.appendChild(modalAccept);
     modalExit.classList.add("modal-exit");
