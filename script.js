@@ -13,6 +13,12 @@ document.getElementById("modalButton-2").addEventListener("click", (e) => {
     content: "This is an alert!",
     submitText: "Ok",
     closeVisible: 0,
+    onClose: () => {
+      alert("You closed the modal");
+    },
+    onSubmit: () => {
+      alert("You clicked Ok");
+    },
   });
 });
 
@@ -20,13 +26,14 @@ document.getElementById("modalButton-3").addEventListener("click", (e) => {
   monkeModal.showModal({
     template: "Loader",
     title: "Loading",
-    content: "This window will close once the loading is finished",
+    content: "This window will close after 5 seconds",
+    closeVisible: 0,
   });
   closeWindowTimer(5000);
 });
 
 const closeWindowTimer = (time) => {
   setTimeout(function () {
-    monkeModal.removeModal();
+    monkeModal.hideModal();
   }, time);
 };

@@ -40,7 +40,7 @@
   box-shadow: 0px 0px 30px -7px rgba(66, 68, 90, 0.8);
 }
 
-.modal-button-wrapper {
+.modal-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
