@@ -1,7 +1,3 @@
-.modal-exit.hidden {
-  display: none;
-}
-
 #container {
   display: flex;
   flex-direction: column;

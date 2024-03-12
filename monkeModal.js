@@ -4,12 +4,14 @@
     hideModal,
   };
 
+  let modalParameters = null;
+
   function showModal(modalParams) {
     const defaultModalParams = {
       title: "Modal title",
       content: "Default modal text",
       image: "",
-      template: "Confirm",
+      template: "Accept",
       submitText: "Accept",
       cancelText: "Decline",
       closeVisible: 1,
@@ -23,6 +25,7 @@
     };
 
     _renderModal(resolvedModalParams);
+    modalParameters = resolvedModalParams;
   }
 
   function hideModal() {
@@ -33,8 +36,6 @@
   }
 
   window.monkeModal = publicApi;
-
-  let hasEventHandler = false;
 
   function _createModal() {
     let modalWrapper = document.createElement("div");
@@ -61,7 +62,6 @@
     buttonWrapper.appendChild(modalCancelBtn);
     modalExit.classList.add("modal-exit");
     modalExit.innerHTML = `&times;`;
-    scrollLock.style.overflow = "hidden";
     modal.appendChild(modalImage);
     modal.appendChild(modalTitle);
     modal.appendChild(modalContent);
@@ -74,45 +74,48 @@
 
   _createModal();
 
-  function _renderModal(input) {
-    const modalWrapper = document.getElementById("modal-wrapper");
-    const modal = document.getElementsByClassName("modal")[0];
-    const modalImage = document.getElementsByClassName("modal-image")[0];
-    const modalTitle = document.getElementsByClassName("modal-title")[0];
-    const modalContent = document.getElementsByClassName("modal-content")[0];
-    const modalExit = document.getElementsByClassName("modal-exit")[0];
-    const buttonWrapper = document.getElementsByClassName("modal-buttons")[0];
-    const modalAcceptBtn = document.getElementsByClassName("modal-accept")[0];
-    const modalCancelBtn = document.getElementsByClassName("modal-cancel")[0];
-    const scrollLock = document.getElementsByTagName("BODY")[0];
+  const modalWrapper = document.getElementById("modal-wrapper");
+  const modal = document.getElementsByClassName("modal")[0];
+  const modalImage = document.getElementsByClassName("modal-image")[0];
+  const modalTitle = document.getElementsByClassName("modal-title")[0];
+  const modalContent = document.getElementsByClassName("modal-content")[0];
+  const modalExit = document.getElementsByClassName("modal-exit")[0];
+  const buttonWrapper = document.getElementsByClassName("modal-buttons")[0];
+  const modalAcceptBtn = document.getElementsByClassName("modal-accept")[0];
+  const modalCancelBtn = document.getElementsByClassName("modal-cancel")[0];
+  const scrollLock = document.getElementsByTagName("BODY")[0];
+  let hasEventHandler = false;
 
-    const handleAccept = () => {
-      modalWrapper.style.display = "none";
-      input.onSubmit();
-      scrollLock.style.overflow = "visible";
-    };
+  const handleAccept = () => {
+    modalWrapper.style.display = "none";
+    modalParameters.onSubmit();
+    scrollLock.style.overflow = "visible";
+  };
 
-    const handleCancel = () => {
-      modalWrapper.style.display = "none";
-      input.onClose();
-      scrollLock.style.overflow = "visible";
-    };
+  const handleCancel = () => {
+    modalWrapper.style.display = "none";
+    modalParameters.onClose();
+    scrollLock.style.overflow = "visible";
+  };
 
-    const handleExit = () => {
+  const handleExit = () => {
+    handleCancel();
+  };
+
+  const handleEscape = (e) => {
+    if (e.key === "Escape") {
       handleCancel();
-    };
+    }
+  };
 
-    const handleEscape = (e) => {
-      if (e.key === "Escape") {
-        handleCancel();
-      }
-    };
+  const handleClickOutside = (e) => {
+    if (e.target === modalWrapper) {
+      handleCancel();
+    }
+  };
 
-    const handleClickOutside = (e) => {
-      if (e.target === modalWrapper) {
-        handleCancel();
-      }
-    };
+  function _renderModal(input) {
+    scrollLock.style.overflow = "hidden";
 
     const handleEvents = () => {
       modalAcceptBtn.addEventListener("click", handleAccept);
@@ -130,9 +133,13 @@
       modalAcceptBtn.style.display = "block";
       modalCancelBtn.innerHTML = input.cancelText;
       modalCancelBtn.style.display = "block";
-      modalExit.classList.toggle("hidden", input.closeVisible === 0); //change to not require stylesheet
+      if (input.closeVisible === 0) {
+        modalExit.style.display = "none";
+      } else {
+        modalExit.style.display = "";
+      }
       modalImage.style.background = input.image;
-      modalWrapper.style.display = "flex";
+      modalWrapper.style.display = "";
     };
 
     switch (input.template) {
@@ -153,6 +160,8 @@
         changeModalContent();
         modalAcceptBtn.style.display = "none";
         modalCancelBtn.style.display = "none";
+        modalAcceptBtn.removeEventListener("click", handleAccept);
+        modalCancelBtn.removeEventListener("click", handleCancel);
         window.removeEventListener("keydown", handleEscape);
         window.removeEventListener("click", handleClickOutside);
         hasEventHandler = false;

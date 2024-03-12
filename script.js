@@ -3,6 +3,12 @@ document.getElementById("modalButton-1").addEventListener("click", (e) => {
     template: "Accept",
     title: "Accept or Decline",
     content: "It's time to choose",
+    onClose: () => {
+      alert("You closed the modal");
+    },
+    onSubmit: () => {
+      alert("You clicked Accept");
+    },
   });
 });
 
@@ -26,7 +32,7 @@ document.getElementById("modalButton-3").addEventListener("click", (e) => {
   monkeModal.showModal({
     template: "Loader",
     title: "Loading",
-    content: "This window will close after 5 seconds",
+    content: "This window will close in 5 seconds",
     closeVisible: 0,
   });
   closeWindowTimer(5000);
