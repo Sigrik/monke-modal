@@ -21,9 +21,10 @@ In order to show a modal, invoke the **monkeModal.showModal()** function with yo
 
 ```
 monkeModal.showModal({
-    template: "Accept",
+    template: "Alert",
     title: "MyTitle",
     content: "The content of the modal",
+    image: "img/alertImage.png",
     // more params
 });
 ```
