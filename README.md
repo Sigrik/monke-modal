@@ -43,15 +43,17 @@ function myFunction() {
 Monke Modal allows you to specify parameters when invoking the **monkeModal.showModal()** function.
 This is a list of all the parameters and their functionality:
 
-- **title** - Accepts a string to display as the title of the modal
-- **content** - Accepts a string to display as the content of the modal
-- **image** - Accepts a string with an image URL, shows nothing if unset
-- **template** - Accepts a string with the name of a template to be used (**Accept**, **Alert** or **Loader**)
-- **submitText** - Accepts a string to display on the "Accept" button
-- **cancelText** - Accepts a string to display on the "Cancel" button
-- **closeVisible** - If set to 0, it hides the closing X button (default: 1)
-- **onClose** - Function to be executed if the modal is closed via any method besides the "Accept" button
-- **onSubmit** - Function to be executed if the "Accept" button is clicked
+| Parameter    | Functionality                                                                                 |
+| ------------ | --------------------------------------------------------------------------------------------- |
+| title        | Accepts a string to display as the title of the modal                                         |
+| content      | Accepts a string to display as the content of the modal                                       |
+| image        | Accepts a string with an image URL, shows nothing if unset                                    |
+| template     | Accepts a string with the name of a template to be used (**Accept**, **Alert** or **Loader**) |
+| submitText   | Accepts a string to display on the "Accept" button                                            |
+| cancelText   | Accepts a string to display on the "Cancel" button                                            |
+| closeVisible | If set to 0, it hides the closing X button (default: 1)                                       |
+| onClose      | Function to be executed if the modal is closed via any method besides the "Accept" button     |
+| onSubmit     | Function to be executed if the "Accept" button is clicked                                     |
 
 These parameters can be provided in any order when invoking the **monkeModal.showModal()** function.
 
