@@ -19,7 +19,7 @@ document.getElementById("modalButton-2").addEventListener("click", (e) => {
     content: "This is an alert!",
     image: "img/alertImage.png",
     submitText: "Ok",
-    closeVisible: 0,
+    closeButtonVisible: false,
     onClose: () => {
       alert("You closed the modal");
     },
@@ -34,7 +34,7 @@ document.getElementById("modalButton-3").addEventListener("click", (e) => {
     template: "Loader",
     title: "Loading",
     content: "This window will close in 5 seconds",
-    closeVisible: 0,
+    closeButtonVisible: false,
     onClose: () => {
       alert("Loading complete, closing modal");
     },

@@ -43,17 +43,17 @@ function myFunction() {
 Monke Modal allows you to specify parameters when invoking the **monkeModal.showModal()** function.
 This is a list of all the parameters and their functionality:
 
-| Name         | type         | default        | description                                                                               |
-| ------------ | ------------ | -------------- | ----------------------------------------------------------------------------------------- |
-| title        | string       | "Modal title"  | The title of the modal                                                                    |
-| content      | string       | "Default text" | The text content of the modal                                                             |
-| image        | string (url) | ""             | Image to display, shows nothing if unset                                                  |
-| template     | string       | "Accept"       | The name of the template to be used (**Accept**, **Alert** or **Loader**)                 |
-| submitText   | string       | "Accept"       | The text content of the "Accept" button                                                   |
-| cancelText   | string       | "Decline"      | The text content of the "Decline" button                                                  |
-| closeVisible | number       | 1              | If set to 0, hide the closing X button                                                    |
-| onClose      | function     | () => {}       | Function to be executed if the modal is closed via any method besides the "Accept" button |
-| onSubmit     | function     | () => {}       | Function to be executed if the "Accept" button is clicked                                 |
+| Name               | type         | default        | description                                                                               |
+| ------------------ | ------------ | -------------- | ----------------------------------------------------------------------------------------- |
+| title              | string       | "Modal title"  | The title of the modal                                                                    |
+| content            | string       | "Default text" | The text content of the modal                                                             |
+| image              | string (url) | ""             | Image to display, shows nothing if unset                                                  |
+| template           | string       | "Accept"       | The name of the template to be used (**Accept**, **Alert** or **Loader**)                 |
+| submitText         | string       | "Accept"       | The text content of the "Accept" button                                                   |
+| cancelText         | string       | "Decline"      | The text content of the "Decline" button                                                  |
+| closeButtonVisible | boolean      | true           | If set to false, hide the closing X button                                                |
+| onClose            | function     | () => {}       | Function to be executed if the modal is closed via any method besides the "Accept" button |
+| onSubmit           | function     | () => {}       | Function to be executed if the "Accept" button is clicked                                 |
 
 These parameters can be provided in any order when invoking the **monkeModal.showModal()** function.
 

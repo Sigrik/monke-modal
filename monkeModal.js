@@ -14,7 +14,7 @@
       template: "Accept",
       submitText: "Accept",
       cancelText: "Decline",
-      closeVisible: 1,
+      closeButtonVisible: 1,
       onClose: () => {},
       onSubmit: () => {},
     };
@@ -134,7 +134,7 @@
       modalAcceptBtn.style.display = "block";
       modalCancelBtn.innerHTML = input.cancelText;
       modalCancelBtn.style.display = "block";
-      if (input.closeVisible === 0) {
+      if (input.closeButtonVisible === false) {
         modalExit.style.display = "none";
       } else {
         modalExit.style.display = "";
