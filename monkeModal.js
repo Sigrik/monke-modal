@@ -139,7 +139,12 @@
       } else {
         modalExit.style.display = "";
       }
-      modalImage.style.background = `url(${input.image})`;
+      modalImage.style.backgroundImage = `url(${input.image})`;
+      if (input.image) {
+        modalImage.style.display = "";
+      } else {
+        modalImage.style.display = "none";
+      }
       modalWrapper.style.display = "";
     };
 
