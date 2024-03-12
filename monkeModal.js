@@ -9,7 +9,7 @@
   function showModal(modalParams) {
     const defaultModalParams = {
       title: "Modal title",
-      content: "Default modal text",
+      content: "Default text",
       image: "",
       template: "Accept",
       submitText: "Accept",
@@ -33,6 +33,7 @@
     const scrollLock = document.getElementsByTagName("BODY")[0];
     modalWrapper.style.display = "none";
     scrollLock.style.overflow = "visible";
+    modalParameters.onClose();
   }
 
   window.monkeModal = publicApi;
@@ -138,7 +139,7 @@
       } else {
         modalExit.style.display = "";
       }
-      modalImage.style.background = input.image;
+      modalImage.style.background = `url(${input.image})`;
       modalWrapper.style.display = "";
     };
 

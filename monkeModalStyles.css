@@ -36,6 +36,14 @@
   box-shadow: 0px 0px 30px -7px rgba(66, 68, 90, 0.8);
 }
 
+.modal-image {
+  width: 50%;
+  height: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .modal-buttons {
   display: flex;
   flex-direction: row;
