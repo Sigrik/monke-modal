@@ -1,6 +1,6 @@
 # Monke Modal
 
-## A simple modal plugin
+## A simple modal plugin practice project
 
 Monke Modal is a simple plugin that allows you to quickly create fully functional modal windows.
 
